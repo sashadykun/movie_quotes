@@ -10,6 +10,7 @@ import SecretList from './secret_list';
 import Quotes from './quotes';
 import SignUp from './sign_up';
 import SignIn from './sign_in';
+import auth from '../hoc/auth';
 
 
 
@@ -21,9 +22,9 @@ const App = () => (
             <Route exact path="/about" component={About}/>
             <Route exact path="/public-list" component={PublicList}/>
             <Route exact path="/secret-list" component={SecretList}/>
-            <Route exact path="/quotes" component={Quotes}/>
-            <Route exact path="/sign-in" component={SignIn}/>
-            <Route exact path="/sign-up" component={SignUp}/>
+            <Route exact path="/quotes" component={auth(Quotes)}/>
+            <Route exact path="/sign-in" component={ auth(SignIn, '/quotes', false) }/>
+            <Route exact path="/sign-up" component={auth(SignUp, '/quotes', false)}/>
 
         </div>
     </div>
